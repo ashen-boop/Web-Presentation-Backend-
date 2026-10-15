@@ -252,6 +252,53 @@ src="https://www.facebook.com/tr?id=2534038970353450&ev=PageView&noscript=1"
             color: #c0c0c0;
         }
 
+        /* ============================================
+           BACK BUTTON — red bg, white text
+           ============================================ */
+        .back-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 40px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #ffffff;                                   /* 👈 white text */
+            text-decoration: none;
+            background: #e63946;                              /* 👈 red bg */
+            border: 1px solid #e63946;
+            box-shadow: 0 4px 14px rgba(230, 57, 70, 0.35);   /* 👈 red-tinted shadow */
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .back-btn .arrow-glyph {
+            display: inline-block;
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+        }
+
+        .back-btn:hover {
+            background: #c92d3a;                              /* 👈 darker red on hover */
+            border-color: #c92d3a;
+            box-shadow: 0 10px 24px rgba(230, 57, 70, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .back-btn:hover .arrow-glyph {
+            transform: translateX(-3px);
+        }
+
+        .back-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
         @media (max-width: 768px) {
             .showcase { padding: 1.5rem 1.2rem; }
             .header h1 { font-size: 1.4rem; }
@@ -269,10 +316,22 @@ src="https://www.facebook.com/tr?id=2534038970353450&ev=PageView&noscript=1"
                 padding: 8px 20px; 
             }
             .style-tag { font-size: 0.55rem; padding: 3px 10px; }
+            .back-btn { 
+                top: 0.9rem; 
+                left: 0.9rem; 
+                font-size: 0.75rem; 
+                padding: 0.5rem 1rem; 
+            }
         }
     </style>
 </head>
 <body>
+
+<!-- ⭐ BACK BUTTON — paste any URL in the script below ⭐ -->
+<a class="back-btn" id="backBtn" href="#" target="_blank" rel="noopener">
+    <span class="arrow-glyph">←</span>
+    <span>Back</span>
+</a>
 
 <div class="showcase">
     <div class="header">
@@ -313,6 +372,20 @@ src="https://www.facebook.com/tr?id=2534038970353450&ev=PageView&noscript=1"
 </div>
 
 <script>
+    /* ============================================
+       ⭐ BACK BUTTON — paste any URL here ⭐
+       ============================================ */
+    const BACK_BUTTON_URL = "https://backend-hub-web-attachment.vercel.app/";   // 👈 paste your URL here
+    const BACK_BUTTON_LABEL = "Back";                                // 👈 change the label if you want
+
+    (function() {
+        const backBtn = document.getElementById('backBtn');
+        if (!backBtn) return;
+        backBtn.setAttribute('href', BACK_BUTTON_URL);
+        const labelSpan = backBtn.querySelector('span:last-child');
+        if (labelSpan) labelSpan.textContent = BACK_BUTTON_LABEL;
+    })();
+
     // ============================================
     // OPEN VIEWER
     // ============================================
